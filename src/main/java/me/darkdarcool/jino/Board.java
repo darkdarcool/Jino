@@ -3,6 +3,7 @@ package me.darkdarcool.jino;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import me.darkdarcool.jino.Game.blocks.Block;
+import me.darkdarcool.jino.Game.blocks.Update;
 
 public class Board {
   public static int[] map;
@@ -13,6 +14,9 @@ public class Board {
   private static HashMap<String, Integer> blockCallers = new HashMap<String, Integer>();
   private static HashMap<Integer, String> blockNames = new HashMap<Integer, String>();
   private static HashMap<Integer, String> blockCovers = new HashMap<Integer, String>();
+
+  private static HashMap<Integer, Update> blockUpdates = new HashMap<Integer, Update>();
+
   public Board() {
     // Default map gen
     // TODO: Make board bigger
@@ -83,6 +87,17 @@ public class Board {
     blockCovers.put(caller, cover);
     blockCallers.put(name, caller);
   }
+
+  public void registerUpdate(Update enemy, int caller)  {
+    blockUpdates.put(caller, enemy);
+  }
+
+  public void updateBlocks(Board board) {
+    for (int key : blockUpdates.keySet()) {
+      blockUpdates.get(key).update(board);
+    }
+  }
+
   public Boolean isBlock(int caller) {
     for (int block : blockCallers.values()) {
       if (block == caller) return true;
@@ -90,15 +105,17 @@ public class Board {
     return false;
   }
 
+
+
   public Block getBlocks(int caller) {
     return blocks.get(caller);
   }
-
   public String getBlockName(int caller) {
     return blockNames.get(caller);
   }
   public int getBlockCaller(String name) {
     return blockCallers.get(name);
   }
+
 
 }

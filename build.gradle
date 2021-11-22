@@ -1,0 +1,26 @@
+plugins {
+    id 'application'
+}
+
+group 'com.darkdarcool'
+version '1.1'
+
+
+repositories {
+    jcenter()
+}
+
+run{
+    standardInput = System.in
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'me.darkdarcool.jino.Main'
+        )
+    }
+}
+
+mainClassName = 'me.darkdarcool.jino.Main'

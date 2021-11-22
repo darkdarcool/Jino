@@ -46,4 +46,13 @@ public class Box {
       }
     }
   }
+  public void update() {
+    int pos = board.playerIndex(board.map);
+    if (pos % 28 == 0) {
+      System.out.println("YES!");
+    }
+    else {
+      System.out.println("NO!");
+    }
+  }
 }

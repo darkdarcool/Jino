@@ -13,5 +13,6 @@ public class Lava {
   public void onTouch(int direction) {
     board.map[board.playerIndex(board.map)] = 0;
     board.map[90] = 1;
+    System.out.println("[EVENT]: You died!");
   }
 }

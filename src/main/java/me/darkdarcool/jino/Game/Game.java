@@ -84,11 +84,8 @@ public class Game {
         System.out.println("ERROR");
       }
       char option = 0;
-      try {
-        option = (char)System.in.read();
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
+      Scanner scanner = new Scanner(System.in);
+      option = scanner.next().charAt(0);
       Lava lava = new Lava(myBoard);
       if (option == 'w') {
         int cur = myBoard.playerIndex(myBoard.map);
