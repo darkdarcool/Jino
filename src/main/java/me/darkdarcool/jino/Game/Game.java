@@ -7,7 +7,6 @@ import me.darkdarcool.jino.Game.blocks.Lava;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
-import java.io.*;
 
 public class Game {
   public Game() {}
@@ -90,6 +89,9 @@ public class Game {
       if (option == 'w') {
         int cur = myBoard.playerIndex(myBoard.map);
         if (myBoard.map[cur - 14] != 2) {
+          if (myBoard.map[cur - 14] == 3) {
+            break;
+          }
           int dest = myBoard.map[cur - 14];
           if (myBoard.isBlock(dest)) {
             handleBlock(dest, myBoard, cur, 'w');
@@ -104,6 +106,9 @@ public class Game {
       else if (option == 'a') {
         int cur = myBoard.playerIndex(myBoard.map);
         if (myBoard.map[cur - 1]  != 2) {
+          if (myBoard.map[cur - 1] == 3) {
+            break;
+          }
           int dest = myBoard.map[cur - 1];
           if (dest != 0) {
             handleBlock(dest, myBoard, cur, 'a');
@@ -118,6 +123,9 @@ public class Game {
       else if (option == 's') {
         int cur = myBoard.playerIndex(myBoard.map);
         if (myBoard.map[cur + 14] != 2) {
+          if (myBoard.map[cur + 14] == 3) {
+            break;
+          }
           int dest = myBoard.map[cur + 14];
           if (dest != 0) {
             if (myBoard.isBlock(dest)) {
@@ -134,6 +142,9 @@ public class Game {
       else if (option == 'd') {
         int cur = myBoard.playerIndex(myBoard.map);
         if (myBoard.map[cur + 1] != 2) {
+          if (myBoard.map[cur + 1] == 3) {
+            break;
+          }
           int dest = myBoard.map[cur + 1];
           if (dest != 0) {
             if (myBoard.isBlock(dest)) {
@@ -168,6 +179,9 @@ public class Game {
   private static void levelManager() {
     System.out.println("Prepare to start level 1");
     play(Levels.loadLevel1());
+    clearScreen();
+    System.out.println("You finished the all of the levels!");
+    System.exit(0);
   }
 
   private void info() {

@@ -10,6 +10,7 @@ public class Board {
   private static final String defaultPlayer = "\uD83D\uDE03";
   private static final String emptyTitle = "⬛";
   private static final String wallTile = "\uD83D\uDFE6";
+  private static final String finishTile = "\uD83D\uDFE9";
   private static HashMap<Integer, Block> blocks = new HashMap<Integer, Block>();
   private static HashMap<String, Integer> blockCallers = new HashMap<String, Integer>();
   private static HashMap<Integer, String> blockNames = new HashMap<Integer, String>();
@@ -49,6 +50,7 @@ public class Board {
       if (placement == 13) {
         if (key == 1) System.out.println(defaultPlayer);
         else if (key == 2 || key == 0) System.out.println(wallTile);
+        else if (key == 3) System.out.println(finishTile);
         else {
           for (int block : blockCallers.values()) {
             if (block == key) {
@@ -62,6 +64,7 @@ public class Board {
         if (key == 1) System.out.print(defaultPlayer);
         else if (key == 0) System.out.print(emptyTitle);
         else if (key == 2) System.out.print(wallTile);
+        else if (key == 3) System.out.print(finishTile);
         else {
           for (int block : blockCallers.values()) {
             if (block == key) {
